@@ -1,0 +1,69 @@
+
+
+不同操作系统安装的参考官方文档
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//apt-get install 方式安装
+
+
+http://nginx.org/en/docs/install.html
+
+ubuntu
+
+1.添加公钥(当前目录新建nginx_signing.key文件把官网key的内容拷贝到这个文件即可)
+	sudo apt-key add nginx_signing.key
+
+2.添加源（需要替换对应版本的codename）
+
+For Debian replace codename with Debian distribution codename, and append the following to the end of the /etc/apt/sources.list file:
+
+	deb http://nginx.org/packages/debian/ codename nginx
+	deb-src http://nginx.org/packages/debian/ codename nginx
+
+
+3.更新源并安装
+	apt-get update
+	apt-get install nginx
+
+4.查看进程是否启动
+ps -ef | grep nginx
+
+
+
+http://192.168.250.133:80/
+
+通过主机访问虚拟机Ip+80端口即可访问到Nginx的欢迎页面
+
+5.查看软件安装在哪里 /etc/nginx(有nginx的配置文件)
+webrtc@webrtc-virtual-machine:/usr/bin$ whereis nginx
+nginx: /usr/sbin/nginx /etc/nginx /usr/lib/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz

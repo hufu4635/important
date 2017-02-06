@@ -1,0 +1,31 @@
+
+1.软件包准备,注意版本号，不要尝试新版本，新的版本我这里make的时候会出错
+	nginx-1.10.1.tar.gz
+	openssl-1.0.1t.tar.gz
+	pcre-8.39.tar.bz2
+	zlib128.zip
+
+	解压上面的软件包到指定目录(另外三个依赖包不用编译安装)
+	我这里统一解压到了我的用户目录新建的live文件夹下
+	/home/webrtc/nginx/...
+
+2.操作系统为ubuntu14.04
+	
+	//配置nginx
+	->./configure --prefix=/usr/local/nginx --with-pcre=/home/webrtc/live/pcre --with-zlib=/home/webrtc/live/zlib --with-openssl=/home/webrtc/live/openssl
+		
+		–with-pcre是指需要pcre库，/path/to/your/pcre/是指的pcre源代码路径，其他的同理。
+		其中–prefix是指定你执行make install后nginx的安装目录(不是你解压的nginx源码目录)，
+	
+3.->make
+4.->make install
+
+5.执行下面的命令看到进程出现，证明安装成功了
+	[root@localhost conf]# ps -ef | grep nginx
+	root      60091      1  0 23:13 ?        00:00:00 nginx: master process ./nginx
+	nobody    60092  60091  0 23:13 ?        00:00:00 nginx: worker process
+	root      60291  18983  0 23:19 pts/1    00:00:00 grep --color=auto nginx
+
+
+
+3.安装完成之后，在浏览器中输入192.168.250.133:80则会进入nginx的欢迎页面

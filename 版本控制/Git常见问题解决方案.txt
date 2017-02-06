@@ -1,0 +1,25 @@
+
+
+
+git pull 代码的时候和本地冲突 出现黄色感叹号
+	1.使用TortiseGit -> show log(查看代码版本历史) ->选中最新的版本(右击) -> reset this....
+		reset 有三种模式
+			采用第三种 hard 本地的代码不做任何改变
+	
+	2.hard后出现红色感叹号的错误
+		->继续选中该版本->继续进行hard，
+		就成绿色了
+		
+
+		
+		
+		
+		
+git Tag(分为本地和远端)
+
+	git tag(查看本地的Tag)
+	git tag -d test(删除本地的test标签)
+	
+	//删除远端的test Tag
+	$ git push origin :refs/tags/test 
+		

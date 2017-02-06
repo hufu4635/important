@@ -1,0 +1,5 @@
+
+MySQL的默认编码是拉丁
+
+//查看mysql数据库的默认编码:
+mysql> show variables like "character%";

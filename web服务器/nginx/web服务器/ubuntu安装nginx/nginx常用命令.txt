@@ -1,0 +1,17 @@
+
+
+//查看nginx进程
+[root@localhost conf]# ps -ef | grep nginx
+root      60091      1  0 23:13 ?        00:00:00 nginx: master process ./nginx
+nobody    60092  60091  0 23:13 ?        00:00:00 nginx: worker process
+root      60291  18983  0 23:19 pts/1    00:00:00 grep --color=auto nginx
+
+
+//查看nginx版本号
+[root@localhost nginx]# ./sbin/nginx -v
+nginx version: nginx/1.10.1
+
+
+
+[root@localhost sbin]# ./nginx -s stop
+[root@localhost sbin]# ./nginx -s reload

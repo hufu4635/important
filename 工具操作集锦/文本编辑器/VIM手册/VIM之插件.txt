@@ -1,0 +1,12 @@
+
+
+
+	 1、配置文件的位置 在目录 /etc/ 下面，有个名为vimrc的文件，这是系统中公共的vim配置文件，
+	 对所有用户都有效。而在每个用户的主目录下，都可以自己建立私有的配置文件，命名为：“.viminfo”。例如，/root目录下，通常已经存在一个.viminfo文件。 
+
+VIM配置文件存放文件
+	centos下
+		A:/etc/vimrc
+		
+		b:/home/username/.viminfo(建议在这里修改)
+		

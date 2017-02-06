@@ -1,0 +1,11 @@
+
+通过下面的shell命令指定创建数据库的查找路径 \(查找路径为根路径),-name "文件名称" -d(说明我们要查找的文件类型为目录)
+# find \  -name "php" -d
+/var/lib/mysql/php
+
+
+查看php数据库有哪些文件
+[test@localhost ~]$ sudo ls /var/lib/mysql/php
+[sudo] password for test: 
+db.opt	     test_01.ibd  test_03.ibd	  user_table.ibd
+test_01.frm  test_03.frm  user_table.frm
