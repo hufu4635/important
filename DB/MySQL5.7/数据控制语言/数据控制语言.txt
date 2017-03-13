@@ -1,0 +1,80 @@
+
+一、用户管理
+	mysql中的所有用户，都存储在系统数据库（mysql）中的user 表中——不管哪个数据库的用户，都存储在这里。
+	
+	示例:
+	mysql> use mysql;
+	mysql> select *from user;
+
+1.创建用户
+	语法形式:CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+	说明:
+		username – 你将创建的用户名, 
+		host – 指定该用户在哪个主机上可以登陆,如果是本地用户可用localhost,  
+				如果想让该用户可以从任意远程主机登陆,可以使用通配符%. 
+		password –  该用户的登陆密码,密码可以为空,如果为空则该用户可以不需要密码登 陆服务器.
+	
+	示例
+	CREATE USER 'test'@'%' IDENTIFIED BY 'Test_test_123456';#在mysqkl5.7上设置了安全密码机制，设置的密码必须要符合该机制，否则会出错
+	
+	
+2.删除用户
+	DROP USER ‘username’@'host’; #这里的host要跟user表里的host进行对应
+	
+	示例:
+	mysql> drop USER 'test'@'%';
+
+3.查看和修改用户允许登录的host
+	mysql> use mysql;
+	mysql> select host,user from user;#查看mysql中的用户允许登录的ip
+	
+	mysql> update user set host = '%' where user = 'root';#修改root的host为%,表示允许任意IP地址登录. 设置为后需要重启mysql或机器
+	
+
+二、权限管理	
+	mysql数据库，将其中所能做的所有事情，都分门别类分配到大约30多个权限中去了，其中每个权限，都是一个“单词”而已！，比如：
+	select：代表可以查询数据；
+	update：代表可以修改数据；
+	delete：代表可以删除数据；
+	.......
+	其中，有一个权限名叫做“all”：表示所有权限；
+1.用户授权
+	语法形式:GRANT privileges ON databasename.tablename TO 'username'@'host'
+	说明: 
+		privileges – 用户的操作权限,如SELECT , INSERT , UPDATE  等(详细列表见该文最后面).
+			如果要授予所有的权限则使用ALL.;
+			databasename – 数据库名
+			tablename-表名,如果要授予该用户对所有数据库和表的相应操作权限则可用* 表示, 如*.*.
+		
+	示例:
+	mysql> GRANT SELECT, INSERT ON mysql.user TO 'test'@'%'; 
+	mysql> GRANT ALL ON *.* TO 'test'@'%';
+	
+	注意:用以上命令授权的用户不能给其它用户授权,如果想让该用户可以授权,用以下命令:
+	GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION；
+	
+	
+2.撤销用户权限 
+	语法形式:REVOKE privilege ON databasename.tablename FROM 'username'@'host';
+	说明: 
+		privilege, databasename, tablename – 同授权部分.
+	
+	示例
+		mysql> REVOKE SELECT, INSERT ON `mysql`.`user` FROM 'test'@'%';#撤销权限注意和用户的授权列表对应
+	
+	撤销技巧说明
+	step1.查看该用户的权限列表
+		mysql> show grants for test@'%';
+	step2.复制该用户的权限
+		GRANT ALL PRIVILEGES ON *.* TO 'test'@'%'
+	step3.把GRANT替换为REVOKE ON替换为FROM,执行即可
+		mysql> REVOKE ALL PRIVILEGES ON *.* FROM 'test'@'%';
+
+	
+	
+3.查看某个用户的权限列表(host要跟user表里的host对应)
+	mysql> show grants for root@'localhost';#对于localhost的用户
+	mysql> show grants for test@'%';#对于任意ip的用户
+
+		
+
