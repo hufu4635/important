@@ -9,8 +9,8 @@
 ##2.Git Tag操作
 ###2.1 Tag操作流程
 ```
-    1. $ git tag test -m '信息'            创建本地Tag
-    2. $ git push origin test              推送本地Tag testone到远程仓库
+    1. $ git tag wappv1.0.5.1 -m 'Fixed multiple initialization problem'            创建本地Tag
+    2. $ git push origin wappv1.0.5.1              推送本地Tag testone到远程仓库
     3. $ git push origin :refs/tags/test   删除远端的Tag标签
     4. $ git tag -d test                   删除本地的Tag标签
     5. $ git tag           展示本地和远端的Tag列表以你当前的代码版本为基准)
@@ -18,6 +18,9 @@
 
 ###2.2 其他命令
     命令git push origin --tags可以推送全部未推送过的本地标签;        
+
+
+ 
 
 
 
@@ -81,6 +84,15 @@ Automatic merge failed; fix conflicts and then commit the result
         mixed(默认)
         hard 可以让出现黄色或者红色冲突的问题变成绿色(具体原因待续)                        
 
+###4.2Git reset详解
+    git reset有三个选项，--hard、--mixed、--soft。
+
+    //仅仅只是撤销已提交的版本库，不会修改暂存区和工作区
+    git reset --soft 版本库ID
+    //仅仅只是撤销已提交的版本库和暂存区，不会修改工作区
+    git reset --mixed 版本库ID
+    //彻底将工作区、暂存区和版本库记录恢复到指定的版本库
+    git reset --hard 版本库ID
 
 
 
